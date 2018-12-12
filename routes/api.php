@@ -36,3 +36,5 @@ Route::group(['middleware' => ['auth:api'], 'prefix' => 'v1/member'], function()
 
 
 Route::resource('settings', 'SettingAPIController');
+
+Route::resource('member_types', 'MemberTypeAPIController');
