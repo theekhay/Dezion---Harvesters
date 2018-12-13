@@ -37,7 +37,7 @@ class Setting extends Model
 
     protected $dates = ['deleted_at'];
 
-    public $fillable = [
+    public $guarded = [
 
     ];
 

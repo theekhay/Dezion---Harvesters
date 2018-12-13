@@ -15,6 +15,16 @@ class CreateBranchesTable extends Migration
     {
         Schema::create('branches', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->string('name')->unique();
+            $table->integer('church_id');
+            $table->string('code')->nullable();
+            $table->boolean('active')->default(1);
+            $table->integer('created_by');
+            $table->string('location')->nullable();
+
+            $table->integer('deleted_by')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

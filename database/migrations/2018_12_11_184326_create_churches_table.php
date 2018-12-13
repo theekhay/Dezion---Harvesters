@@ -15,6 +15,16 @@ class CreateChurchesTable extends Migration
     {
         Schema::create('churches', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->string('name')->unique();
+            $table->string('code')->nullable();
+            $table->boolean('active')->default(1);
+            $table->integer('created_by');
+            $table->integer('headquarters')->nullable();
+            $table->string('logo')->nullable();
+
+            $table->integer('deleted_by')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
