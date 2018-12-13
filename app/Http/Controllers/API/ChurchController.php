@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ChurchController extends Controller
+class ChurchController extends AppBaseController
 {
     /**
      * Display a listing of the resource.
