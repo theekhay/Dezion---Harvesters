@@ -2,10 +2,22 @@
 
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
+
+//controllers
+use App\Http\Controllers\AppBaseController;
 use App\Http\Controllers\Controller;
 
-class BranchController extends Controller
+//models
+use App\Models\Branch;
+
+//resources
+use App\Http\Resources\BranchResource;
+
+//requests
+use Illuminate\Http\Request;
+use App\Http\Requests\CreateBranchRequest;
+
+class BranchController extends AppBaseController
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +26,7 @@ class BranchController extends Controller
      */
     public function index()
     {
-        //
+        return $this->sendResponse(  BranchResource::collection( Branch::all() ), 'All branch resource' );
     }
 
     /**
@@ -23,9 +35,15 @@ class BranchController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateBranchRequest $request)
     {
-        //
+        $branch = Branch::create( $request->all() + [ 'created_by' => 1 ] );
+
+        if( $branch ) {
+            return $this->sendResponse( new BranchResource( Branch::find( $branch->id ) ), 'Branch created successfully' );
+        }
+
+        return $this->sendError('Error creating new church', 302);
     }
 
     /**
@@ -36,7 +54,7 @@ class BranchController extends Controller
      */
     public function show($id)
     {
-        //
+        return $this->sendResponse( new BranchResource( Branch::findOrFail($id) ), 'Branch Detail retrieved successfully' );
     }
 
     /**

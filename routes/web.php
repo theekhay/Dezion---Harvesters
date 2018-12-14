@@ -21,3 +21,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::resource('memberTypes', 'MemberTypeController');
+
+Route::resource('memberDetails', 'MemberDetailController');

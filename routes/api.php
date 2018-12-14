@@ -18,10 +18,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('register', 'API\UserController@register');
-Route::post('login', 'API\UserController@login');
-Route::get('details', 'API\UserController@details');
+Route::post('login', 'UserController@login');
+Route::get('details', 'UserController@details');
 
-Route::group(['middleware' => ['auth:api'], 'prefix' => 'v1/member'], function()
+// /middleware' => ['auth:api'],
+Route::group(['prefix' => 'v1'], function()
 {
 
     Route::resources([
@@ -38,3 +39,5 @@ Route::group(['middleware' => ['auth:api'], 'prefix' => 'v1/member'], function()
 Route::resource('settings', 'SettingAPIController');
 
 Route::resource('member_types', 'MemberTypeAPIController');
+
+Route::resource('member_details', 'MemberDetailAPIController');

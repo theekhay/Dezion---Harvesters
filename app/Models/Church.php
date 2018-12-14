@@ -23,6 +23,7 @@ class Church extends Model
      */
     protected $casts = [
 
+        //
     ];
 
     /**
@@ -31,14 +32,14 @@ class Church extends Model
      * @var array
      */
     public static $rules = [
-        //
+        'name' => 'required|string'
     ];
 
 
     /**
      * Defines the relationship between a church and a branch
      */
-    public function branches()
+    public function getBranches()
     {
         return $this->hasMany(Branch::class, 'church_id');
     }
