@@ -45,8 +45,12 @@ class Church extends Model
     }
 
 
-    public function members()
+
+    /**
+     * retruns the member types that belong to this church
+     */
+    public function getMemberTypes()
     {
-        //return $this->hasManyThrough(Memb::class)
+        return $this->hasMany( ChurchMemberType::class );
     }
 }

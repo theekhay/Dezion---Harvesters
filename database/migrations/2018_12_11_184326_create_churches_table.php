@@ -21,6 +21,7 @@ class CreateChurchesTable extends Migration
             $table->boolean('active')->default(1);
             $table->integer('created_by');
             $table->text('logo')->nullable();
+            $table->string('slogan')->nullable();
 
             $table->string('activation_key')->nullable();
 

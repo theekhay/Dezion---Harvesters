@@ -28,6 +28,8 @@ Route::group(['prefix' => 'v1'], function()
     Route::resources([
         'church'   => 'ChurchController',
         'branch' => 'BranchController',
+        'church/member/types' => 'ChurchMemberTypeAPIController',
+        'branch/member/types' => 'BranchMemberTypeAPIController',
     ]);
 
 
@@ -41,3 +43,8 @@ Route::resource('settings', 'SettingAPIController');
 Route::resource('member_types', 'MemberTypeAPIController');
 
 Route::resource('member_details', 'MemberDetailAPIController');
+
+
+Route::resource('branch_member_types', 'BranchMemberTypeAPIController');
+
+Route::resource('church_member_types', 'ChurchMemberTypeAPIController');

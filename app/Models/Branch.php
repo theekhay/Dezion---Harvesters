@@ -43,4 +43,14 @@ class Branch extends Model
     {
         return $this->belongsTo(Church::class);
     }
+
+
+    /**
+     * returns the member types that belong to this branch
+     * @return App\Models\BranchMemberType
+     */
+    public function getMemberTypes()
+    {
+        return $this->hasMany( BranchMemberType::class);
+    }
 }

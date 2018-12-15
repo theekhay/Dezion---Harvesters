@@ -34,7 +34,7 @@ class AuthServiceProvider extends ServiceProvider
          * added to configure token lifetimes (by default, token are valid for a year)
          * This is to set the current expiry time to 1 hr
          */
-        Passport::tokensExpireIn( now()->addDays(15) );
-        Passport::refreshTokensExpireIn(now()->addDays(30));
+       // Passport::tokensExpireIn( now()->addDays(15) );
+       // Passport::refreshTokensExpireIn(now()->addDays(30));
     }
 }

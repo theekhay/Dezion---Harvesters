@@ -191,7 +191,10 @@ return [
         \InfyOm\AdminLTETemplates\AdminLTETemplatesServiceProvider::class,
 
         //for swagger
-        Appointer\Swaggervel\SwaggervelServiceProvider::class
+        Appointer\Swaggervel\SwaggervelServiceProvider::class,
+
+        //extending validation
+        Felixkiss\UniqueWithValidator\ServiceProvider::class,
 
     ],
 

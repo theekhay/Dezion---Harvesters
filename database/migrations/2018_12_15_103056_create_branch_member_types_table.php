@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateMemberTypesTable extends Migration
+class CreateBranchMemberTypesTable extends Migration
 {
 
     /**
@@ -13,20 +13,24 @@ class CreateMemberTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('member_types', function (Blueprint $table) {
+        Schema::create('branch_member_types', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('name')->unique();
-            $table->string('code')->unique();
+            $table->string('name');
+            $table->string('code')->nullable();
+            $table->integer('branch_id');
 
-            $table->boolean('active')->default(1);
-            $table->boolean('church_id')->default(1);
+            $table->integer('approved_by')->nullable();
+            $table->dateTime('approved_date')->nullable();
+            $table->integer('status')->default('0');
 
             $table->integer('created_by');
             $table->integer('deleted_by')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
+
+            $table->unique(['name', 'branch_id']);
         });
     }
 
@@ -37,6 +41,6 @@ class CreateMemberTypesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('member_types');
+        Schema::drop('branch_member_types');
     }
 }
