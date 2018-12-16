@@ -25,6 +25,8 @@ class CreateChurchMemberTypesTable extends Migration
             $table->integer('created_by');
             $table->integer('deleted_by')->nullable();
 
+            $table->json('excluded_branches')->nullable();
+
             $table->timestamps();
             $table->softDeletes();
 

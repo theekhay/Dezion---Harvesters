@@ -16,16 +16,20 @@ class CreateMemberDetailsTable extends Migration
         Schema::create('member_details', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->integer('branch_id');
+
             $table->string('firstname');
             $table->string('surname');
             $table->string('middlename')->nullable();
 
             $table->string('email')->nullable();
             $table->string('address')->nullable();
-            $table->string('occupation')->nullable();
+            $table->string('telephone')->nullable();
 
             $table->integer('created_by');
             $table->integer('deleted_by')->nullable();
+            $table->integer('status')->default(111);
+            $table->integer('member_type_id');
 
             $table->timestamps();
             $table->softDeletes();

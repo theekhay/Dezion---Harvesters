@@ -3,9 +3,8 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Models\MemberDetail;
 
-class BranchResource extends JsonResource
+class MemberDetailResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,13 +16,16 @@ class BranchResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'code' => $this->code,
+            'firstname' => $this->firstname,
+            'surname' => $this->surname,
+            'middlename' => $this->middlename,
+            'email' => $this->email,
+            'address' => $this->address,
+            'telephone' => $this->telephone,
             'created_by' => $this->created_by,
             'created_at' => $this->created_at,
-            'church_id' => $this->church_id,
-            'member-types' => ChurchMemberTypeResource::collection( $this->getMemberTypes ),
-            'members' => MemberDetailResource::collection( $this->getMembers ),
+            'status' => $this->status,
+            'branch_id' => $this->branch_id
         ];
     }
 }

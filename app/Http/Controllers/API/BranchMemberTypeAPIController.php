@@ -2,16 +2,27 @@
 
 namespace App\Http\Controllers\API;
 
+//requests
 use App\Http\Requests\API\CreateBranchMemberTypeAPIRequest;
 use App\Http\Requests\API\UpdateBranchMemberTypeAPIRequest;
-use App\Models\BranchMemberType;
-use App\Repositories\BranchMemberTypeRepository;
 use Illuminate\Http\Request;
+
+//models
+use App\Models\BranchMemberType;
+use App\Models\Branch;
+use App\Models\ChurchMemberType;
+
+//Repo
+use App\Repositories\BranchMemberTypeRepository;
+
+//controllers
 use App\Http\Controllers\AppBaseController;
+
 use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
-use App\Http\Controllers\API\ChurchMemberTypeAPIController;
+use Illuminate\Support\Facades\Auth;
+use function GuzzleHttp\json_encode;
 
 /**
  * Class BranchMemberTypeController
@@ -109,8 +120,15 @@ class BranchMemberTypeAPIController extends AppBaseController
      */
     public function store(CreateBranchMemberTypeAPIRequest $request)
     {
+        $church = Branch::findOrFail( $request->branch_id )->getChurch;
+
+        if( ChurchMemberType::where('church_id', $church->id )->where('name', $request->name )->count() > 0 )
+        {
+            return $this->sendError("This resource has already been created at the church level.", 422);
+        }
+
         $input = $request->all();
-        $branchMemberTypes = $this->branchMemberTypeRepository->create($input);
+        $branchMemberTypes = $this->branchMemberTypeRepository->create($input + ['created_by' => Auth::id() ]);
         return $this->sendResponse($branchMemberTypes->toArray(), 'Branch Member Type saved successfully');
     }
 

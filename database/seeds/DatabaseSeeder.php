@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\MemberDetail;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,7 +16,7 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             ChurchTableSeeder::class,
             BranchMemberTypeTableSeeder::class,
-            ChurchMemberTypeTableSeeder::class
+            ChurchMemberTypeTableSeeder::class,
         ]);
     }
 }

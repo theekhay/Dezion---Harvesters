@@ -38,10 +38,11 @@ class Branch extends Model
 
     /**
      * Defines the relationship between church and branch
+     * @return App\Models\Church
      */
     public function getChurch()
     {
-        return $this->belongsTo(Church::class);
+        return $this->belongsTo( Church::class, 'church_id');
     }
 
 
@@ -51,6 +52,12 @@ class Branch extends Model
      */
     public function getMemberTypes()
     {
-        return $this->hasMany( BranchMemberType::class);
+        return $this->getChurch->getMemberTypes();
+    }
+
+
+    public function getMembers()
+    {
+        return $this->hasMany( MemberDetail::class, 'branch_id'  );
     }
 }

@@ -49,7 +49,7 @@ class ChurchMemberType extends Model
      * @var array
      */
     protected $casts = [
-
+        'name', 'church_id', 'created_by'
     ];
 
     /**

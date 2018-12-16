@@ -40,7 +40,7 @@ class BranchMemberType extends Model
 
 
     public $fillable = [
-        'branch_id', 'name'
+        'branch_id', 'name', 'created_by',
     ];
 
     /**
@@ -58,8 +58,10 @@ class BranchMemberType extends Model
      * @var array
      */
     public static $rules = [
+
         'name' => 'required|alpha_dash|unique_with:branch_member_types,branch_id',
         'branch_id' => 'required|exists:branches,id|numeric',
+        //'created_by' => 'required|numeric|exists:users,id',
 
     ];
 

@@ -11,6 +11,7 @@ use App\Http\Controllers\AppBaseController;
 use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class MemberDetailController
@@ -109,9 +110,7 @@ class MemberDetailAPIController extends AppBaseController
     public function store(CreateMemberDetailAPIRequest $request)
     {
         $input = $request->all();
-
-        $memberDetails = $this->memberDetailRepository->create($input);
-
+        $memberDetails = $this->memberDetailRepository->create( $input + ['created_by' => Auth::id() ]);
         return $this->sendResponse($memberDetails->toArray(), 'Member Detail saved successfully');
     }
 

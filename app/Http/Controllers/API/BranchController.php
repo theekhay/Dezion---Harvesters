@@ -37,7 +37,7 @@ class BranchController extends AppBaseController
      */
     public function store(CreateBranchRequest $request)
     {
-        $branch = Branch::create( $request->all() + [ 'created_by' => 1 ] );
+        $branch = Branch::create( $request->all() + [ 'created_by' => Auth::id() ] );
 
         if( $branch ) {
             return $this->sendResponse( new BranchResource( Branch::find( $branch->id ) ), 'Branch created successfully' );

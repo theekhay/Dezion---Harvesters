@@ -19,17 +19,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('register', 'API\UserController@register');
 Route::post('login', 'UserController@login');
-Route::get('details', 'UserController@details');
+
 
 // /middleware' => ['auth:api'],
-Route::group(['prefix' => 'v1'], function()
+Route::group(['middleware'=> ['auth:api'], 'prefix' => 'v1'], function()
 {
-
+    Route::get('details', 'UserController@details');
     Route::resources([
         'church'   => 'ChurchController',
         'branch' => 'BranchController',
         'church/member/types' => 'ChurchMemberTypeAPIController',
         'branch/member/types' => 'BranchMemberTypeAPIController',
+        'member/details' => 'MemberDetailAPIController',
     ]);
 
 
